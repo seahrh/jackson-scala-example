@@ -11,12 +11,13 @@ class RootSpec extends FlatSpec with LazyLogging {
     val dts: String = "2018-01-01T14:59:59.999"
     val a: A = A(
       rootString = "root=a",
-      rootDateTime = LocalDateTime.parse(dts)
+      rootDateTime = LocalDateTime.parse(dts),
+      rootBigDecimal = BigDecimal(1.23456789)
     )
     val actual: String = a.toJson
     logger.debug(s"actual=$actual")
     assertResult(
-      s"""{"type":"A","rootString":"root=a","rootDateTime":"$dts"}"""
+      s"""{"type":"A","rootString":"root=a","rootDateTime":"$dts","rootBigDecimal":1.23456789}"""
     )(actual)
   }
 
@@ -25,7 +26,8 @@ class RootSpec extends FlatSpec with LazyLogging {
     val dts: String = "2018-01-01T14:59:59.999"
     val e: A = A(
       rootString = "root=a",
-      rootDateTime = LocalDateTime.parse(dts)
+      rootDateTime = LocalDateTime.parse(dts),
+      rootBigDecimal = BigDecimal(1.23456789)
     )
     val a: A = A.fromJson(e.toJson)
     assertResult(e)(a)
@@ -37,10 +39,11 @@ class RootSpec extends FlatSpec with LazyLogging {
     val b: B = B(
       rootString = "root=b",
       rootDateTime = LocalDateTime.parse(dts),
+      rootBigDecimal = BigDecimal(1.23456789),
       l1String = "l1=b"
     )
     assertResult(
-      s"""{"type":"B","rootString":"root=b","rootDateTime":"$dts","l1String":"l1=b"}"""
+      s"""{"type":"B","rootString":"root=b","rootDateTime":"$dts","rootBigDecimal":1.23456789,"l1String":"l1=b"}"""
     )(b.toJson)
   }
 
@@ -50,6 +53,7 @@ class RootSpec extends FlatSpec with LazyLogging {
     val e: B = B(
       rootString = "root=b",
       rootDateTime = LocalDateTime.parse(dts),
+      rootBigDecimal = BigDecimal(1.23456789),
       l1String = "l1=b"
     )
     val a: B = B.fromJson(e.toJson)
@@ -62,11 +66,12 @@ class RootSpec extends FlatSpec with LazyLogging {
     val c: C = C(
       rootString = "root=c",
       rootDateTime = LocalDateTime.parse(dts),
+      rootBigDecimal = BigDecimal(1.23456789),
       l1String = "l1=c",
       l2String = "l2=c"
     )
     assertResult(
-      s"""{"type":"C","rootString":"root=c","rootDateTime":"$dts","l1String":"l1=c","l2String":"l2=c"}"""
+      s"""{"type":"C","rootString":"root=c","rootDateTime":"$dts","rootBigDecimal":1.23456789,"l1String":"l1=c","l2String":"l2=c"}"""
     )(c.toJson)
   }
 
@@ -76,6 +81,7 @@ class RootSpec extends FlatSpec with LazyLogging {
     val e: C = C(
       rootString = "root=c",
       rootDateTime = LocalDateTime.parse(dts),
+      rootBigDecimal = BigDecimal(1.23456789),
       l1String = "l1=c",
       l2String = "l2=c"
     )

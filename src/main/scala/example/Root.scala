@@ -23,6 +23,7 @@ import example.TRoot.mapper
 sealed trait TRoot {
   val rootString: String
   val rootDateTime: LocalDateTime
+  val rootBigDecimal: BigDecimal
 
   def toJson: String = {
     mapper.writeValueAsString(this)
@@ -55,7 +56,8 @@ sealed trait TLevelTwo extends TLevelOne {
 
 final case class A(
                     override val rootString: String,
-                    override val rootDateTime: LocalDateTime
+                    override val rootDateTime: LocalDateTime,
+                    override val rootBigDecimal: BigDecimal
                   ) extends TRoot
 
 object A {
@@ -67,6 +69,7 @@ object A {
 final case class B(
                     override val rootString: String,
                     override val rootDateTime: LocalDateTime,
+                    override val rootBigDecimal: BigDecimal,
                     override val l1String: String
                   ) extends TLevelOne
 
@@ -79,6 +82,7 @@ object B {
 final case class C(
                     override val rootString: String,
                     override val rootDateTime: LocalDateTime,
+                    override val rootBigDecimal: BigDecimal,
                     override val l1String: String,
                     override val l2String: String
                   ) extends TLevelTwo
