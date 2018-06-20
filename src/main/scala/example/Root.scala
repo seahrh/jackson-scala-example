@@ -24,6 +24,7 @@ sealed trait TRoot {
   val rootString: String
   val rootDateTime: LocalDateTime
   val rootBigDecimal: BigDecimal
+  val rootBoolean : Boolean
 
   def toJson: String = {
     mapper.writeValueAsString(this)
@@ -57,7 +58,8 @@ sealed trait TLevelTwo extends TLevelOne {
 final case class A(
                     override val rootString: String,
                     override val rootDateTime: LocalDateTime,
-                    override val rootBigDecimal: BigDecimal
+                    override val rootBigDecimal: BigDecimal,
+                    override val rootBoolean: Boolean
                   ) extends TRoot
 
 object A {
@@ -70,6 +72,7 @@ final case class B(
                     override val rootString: String,
                     override val rootDateTime: LocalDateTime,
                     override val rootBigDecimal: BigDecimal,
+                    override val rootBoolean: Boolean,
                     override val l1String: String
                   ) extends TLevelOne
 
@@ -83,6 +86,7 @@ final case class C(
                     override val rootString: String,
                     override val rootDateTime: LocalDateTime,
                     override val rootBigDecimal: BigDecimal,
+                    override val rootBoolean: Boolean,
                     override val l1String: String,
                     override val l2String: String
                   ) extends TLevelTwo
