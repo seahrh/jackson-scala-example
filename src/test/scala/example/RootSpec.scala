@@ -6,6 +6,10 @@ import com.typesafe.scalalogging.LazyLogging
 import org.scalatest.FlatSpec
 
 class RootSpec extends FlatSpec with LazyLogging {
+
+  private val maxDoubleAsBigDecimal: BigDecimal = BigDecimal(Double.MaxValue)
+  private val minDoubleAsBigDecimal: BigDecimal = BigDecimal(Double.MinValue)
+
   "Class A" should "serialize to json" in {
     // datetime string to millisecond precision
     val dts: String = "2018-01-01T14:59:59.999"
@@ -18,7 +22,7 @@ class RootSpec extends FlatSpec with LazyLogging {
     val actual: String = a.toJson
     logger.debug(s"actual=$actual")
     assertResult(
-      s"""{"type":"A","rootString":"root=a","rootDateTime":"$dts","rootBigDecimal":1.23456789,"rootBoolean":false}"""
+      s"""{"type":"A","rootString":"root=a","rootDateTime":"$dts","rootBigDecimal":1.23456789,"rootBoolean":false,"rootLongMax":${Long.MaxValue},"rootLongMin":${Long.MinValue},"rootMaxDoubleAsBigDecimal":$maxDoubleAsBigDecimal,"rootMinDoubleAsBigDecimal":$minDoubleAsBigDecimal}"""
     )(actual)
   }
 
@@ -46,7 +50,7 @@ class RootSpec extends FlatSpec with LazyLogging {
       l1String = "l1=b"
     )
     assertResult(
-      s"""{"type":"B","rootString":"root=b","rootDateTime":"$dts","rootBigDecimal":1.23456789,"rootBoolean":false,"l1String":"l1=b"}"""
+      s"""{"type":"B","rootString":"root=b","rootDateTime":"$dts","rootBigDecimal":1.23456789,"rootBoolean":false,"l1String":"l1=b","rootLongMax":${Long.MaxValue},"rootLongMin":${Long.MinValue},"rootMaxDoubleAsBigDecimal":$maxDoubleAsBigDecimal,"rootMinDoubleAsBigDecimal":$minDoubleAsBigDecimal}"""
     )(b.toJson)
   }
 
@@ -76,7 +80,7 @@ class RootSpec extends FlatSpec with LazyLogging {
       l2String = "l2=c"
     )
     assertResult(
-      s"""{"type":"C","rootString":"root=c","rootDateTime":"$dts","rootBigDecimal":1.23456789,"rootBoolean":false,"l1String":"l1=c","l2String":"l2=c"}"""
+      s"""{"type":"C","rootString":"root=c","rootDateTime":"$dts","rootBigDecimal":1.23456789,"rootBoolean":false,"l1String":"l1=c","l2String":"l2=c","rootLongMax":${Long.MaxValue},"rootLongMin":${Long.MinValue},"rootMaxDoubleAsBigDecimal":$maxDoubleAsBigDecimal,"rootMinDoubleAsBigDecimal":$minDoubleAsBigDecimal}"""
     )(c.toJson)
   }
 

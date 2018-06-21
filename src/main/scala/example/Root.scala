@@ -24,7 +24,17 @@ sealed trait TRoot {
   val rootString: String
   val rootDateTime: LocalDateTime
   val rootBigDecimal: BigDecimal
-  val rootBoolean : Boolean
+  val rootBoolean: Boolean
+  val rootLongMax: Long = Long.MaxValue
+  val rootLongMin: Long = Long.MinValue
+  // As of jackson 2.9.5, the following annotation did not work for Double.
+  // Known issue for jackson scala module in use with case class.
+  // @see https://github.com/FasterXML/jackson-module-scala/issues/354
+  // @JsonSerialize(using = classOf[ToStringSerializer])
+  // Solution: use BigDecimal instead of double, float.
+  // Also use BigDecimal rounding to control precision.
+  val rootMaxDoubleAsBigDecimal: BigDecimal = BigDecimal(Double.MaxValue)
+  val rootMinDoubleAsBigDecimal: BigDecimal = BigDecimal(Double.MinValue)
 
   def toJson: String = {
     mapper.writeValueAsString(this)
