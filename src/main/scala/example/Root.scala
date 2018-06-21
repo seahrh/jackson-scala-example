@@ -35,6 +35,8 @@ sealed trait TRoot {
   // Also use BigDecimal rounding to control precision.
   val rootMaxDoubleAsBigDecimal: BigDecimal = BigDecimal(Double.MaxValue)
   val rootMinDoubleAsBigDecimal: BigDecimal = BigDecimal(Double.MinValue)
+  val rootNull: String = null
+  val rootEmptyArray: Array[String] = Array()
 
   def toJson: String = {
     mapper.writeValueAsString(this)

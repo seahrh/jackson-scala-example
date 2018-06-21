@@ -22,7 +22,7 @@ class RootSpec extends FlatSpec with LazyLogging {
     val actual: String = a.toJson
     logger.debug(s"actual=$actual")
     assertResult(
-      s"""{"type":"A","rootString":"root=a","rootDateTime":"$dts","rootBigDecimal":1.23456789,"rootBoolean":false,"rootLongMax":${Long.MaxValue},"rootLongMin":${Long.MinValue},"rootMaxDoubleAsBigDecimal":$maxDoubleAsBigDecimal,"rootMinDoubleAsBigDecimal":$minDoubleAsBigDecimal}"""
+      s"""{"type":"A","rootString":"root=a","rootDateTime":"$dts","rootBigDecimal":1.23456789,"rootBoolean":false,"rootLongMax":${Long.MaxValue},"rootLongMin":${Long.MinValue},"rootMaxDoubleAsBigDecimal":$maxDoubleAsBigDecimal,"rootMinDoubleAsBigDecimal":$minDoubleAsBigDecimal,"rootNull":null,"rootEmptyArray":[]}"""
     )(actual)
   }
 
@@ -50,7 +50,7 @@ class RootSpec extends FlatSpec with LazyLogging {
       l1String = "l1=b"
     )
     assertResult(
-      s"""{"type":"B","rootString":"root=b","rootDateTime":"$dts","rootBigDecimal":1.23456789,"rootBoolean":false,"l1String":"l1=b","rootLongMax":${Long.MaxValue},"rootLongMin":${Long.MinValue},"rootMaxDoubleAsBigDecimal":$maxDoubleAsBigDecimal,"rootMinDoubleAsBigDecimal":$minDoubleAsBigDecimal}"""
+      s"""{"type":"B","rootString":"root=b","rootDateTime":"$dts","rootBigDecimal":1.23456789,"rootBoolean":false,"l1String":"l1=b","rootLongMax":${Long.MaxValue},"rootLongMin":${Long.MinValue},"rootMaxDoubleAsBigDecimal":$maxDoubleAsBigDecimal,"rootMinDoubleAsBigDecimal":$minDoubleAsBigDecimal,"rootNull":null,"rootEmptyArray":[]}"""
     )(b.toJson)
   }
 
@@ -80,7 +80,7 @@ class RootSpec extends FlatSpec with LazyLogging {
       l2String = "l2=c"
     )
     assertResult(
-      s"""{"type":"C","rootString":"root=c","rootDateTime":"$dts","rootBigDecimal":1.23456789,"rootBoolean":false,"l1String":"l1=c","l2String":"l2=c","rootLongMax":${Long.MaxValue},"rootLongMin":${Long.MinValue},"rootMaxDoubleAsBigDecimal":$maxDoubleAsBigDecimal,"rootMinDoubleAsBigDecimal":$minDoubleAsBigDecimal}"""
+      s"""{"type":"C","rootString":"root=c","rootDateTime":"$dts","rootBigDecimal":1.23456789,"rootBoolean":false,"l1String":"l1=c","l2String":"l2=c","rootLongMax":${Long.MaxValue},"rootLongMin":${Long.MinValue},"rootMaxDoubleAsBigDecimal":$maxDoubleAsBigDecimal,"rootMinDoubleAsBigDecimal":$minDoubleAsBigDecimal,"rootNull":null,"rootEmptyArray":[]}"""
     )(c.toJson)
   }
 
