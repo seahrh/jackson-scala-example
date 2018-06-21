@@ -41,6 +41,13 @@ sealed trait TRoot {
   val rootOptionNone: Option[String] = None
   // As of jackson 2.9.5, deserialize Seq works but Array does not work.
   val rootSeq: Seq[String]
+  val rootTuple: (String, Long, BigDecimal)
+  // As of jackson 2.9.5, tuple with Option elements can be serialized
+  // but deserialization will fail with
+  // com.fasterxml.jackson.databind.exc.MismatchedInputException:
+  // Cannot deserialize instance of `java.lang.String` out of VALUE_NULL token
+  // e.g.
+  // val rootTupleWithOptions: (Option[String], Option[String]) = (Option("some"), None)
 
   def toJson: String = {
     mapper.writeValueAsString(this)
@@ -76,7 +83,8 @@ final case class A(
                     override val rootDateTime: LocalDateTime,
                     override val rootBigDecimal: BigDecimal,
                     override val rootBoolean: Boolean,
-                    override val rootSeq: Seq[String]
+                    override val rootSeq: Seq[String],
+                    override val rootTuple: (String, Long, BigDecimal)
                   ) extends TRoot
 
 object A {
@@ -91,6 +99,7 @@ final case class B(
                     override val rootBigDecimal: BigDecimal,
                     override val rootBoolean: Boolean,
                     override val rootSeq: Seq[String],
+                    override val rootTuple: (String, Long, BigDecimal),
                     override val l1String: String
                   ) extends TLevelOne
 
@@ -106,6 +115,7 @@ final case class C(
                     override val rootBigDecimal: BigDecimal,
                     override val rootBoolean: Boolean,
                     override val rootSeq: Seq[String],
+                    override val rootTuple: (String, Long, BigDecimal),
                     override val l1String: String,
                     override val l2String: String
                   ) extends TLevelTwo
