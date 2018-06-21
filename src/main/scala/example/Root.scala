@@ -37,6 +37,8 @@ sealed trait TRoot {
   val rootMinDoubleAsBigDecimal: BigDecimal = BigDecimal(Double.MinValue)
   val rootNull: String = null
   val rootEmptyArray: Array[String] = Array()
+  val rootOptionSome: Option[String] = Option("some")
+  val rootOptionNone: Option[String] = None
 
   def toJson: String = {
     mapper.writeValueAsString(this)
