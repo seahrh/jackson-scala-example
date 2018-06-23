@@ -76,6 +76,7 @@ sealed trait TLevelOne extends TRoot {
 
 sealed trait TLevelTwo extends TLevelOne {
   val l2String: String
+  val l2Weekday: Weekday
 }
 
 final case class A(
@@ -117,7 +118,8 @@ final case class C(
                     override val rootSeq: Seq[String],
                     override val rootTuple: (String, Long, BigDecimal),
                     override val l1String: String,
-                    override val l2String: String
+                    override val l2String: String,
+                    override val l2Weekday: Weekday
                   ) extends TLevelTwo
 
 object C {

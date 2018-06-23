@@ -87,11 +87,14 @@ class RootSpec extends FlatSpec with LazyLogging {
       rootSeq = Seq("one", "two", "three"),
       rootTuple = ("hello", 1L, BigDecimal(1.2)),
       l1String = "l1=c",
-      l2String = "l2=c"
+      l2String = "l2=c",
+      l2Weekday = Sunday
     )
+    val actual: String = c.toJson
+    logger.debug(s"actual=$actual")
     assertResult(
-      s"""{"type":"C","rootString":"root=c","rootDateTime":"$dts","rootBigDecimal":1.23456789,"rootBoolean":false,"rootSeq":["one","two","three"],"rootTuple":["hello",1,1.2],"l1String":"l1=c","l2String":"l2=c","rootLongMax":${Long.MaxValue},"rootLongMin":${Long.MinValue},"rootMaxDoubleAsBigDecimal":$maxDoubleAsBigDecimal,"rootMinDoubleAsBigDecimal":$minDoubleAsBigDecimal,"rootNull":null,"rootEmptyArray":[],"rootOptionSome":"some","rootOptionNone":null}"""
-    )(c.toJson)
+      s"""{"type":"C","rootString":"root=c","rootDateTime":"$dts","rootBigDecimal":1.23456789,"rootBoolean":false,"rootSeq":["one","two","three"],"rootTuple":["hello",1,1.2],"l1String":"l1=c","l2String":"l2=c","l2Weekday":"Sunday","rootLongMax":${Long.MaxValue},"rootLongMin":${Long.MinValue},"rootMaxDoubleAsBigDecimal":$maxDoubleAsBigDecimal,"rootMinDoubleAsBigDecimal":$minDoubleAsBigDecimal,"rootNull":null,"rootEmptyArray":[],"rootOptionSome":"some","rootOptionNone":null}"""
+    )(actual)
   }
 
   it should "deserialize json" in {
@@ -105,7 +108,8 @@ class RootSpec extends FlatSpec with LazyLogging {
       rootSeq = Seq("one", "two", "three"),
       rootTuple = ("hello", 1L, BigDecimal(1.2)),
       l1String = "l1=c",
-      l2String = "l2=c"
+      l2String = "l2=c",
+      l2Weekday = Sunday
     )
     val a: C = C.fromJson(e.toJson)
     assertResult(e)(a)
