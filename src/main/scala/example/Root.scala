@@ -81,6 +81,13 @@ sealed trait TLevelTwo extends TLevelOne {
   val l2WeekdayOption: Option[Weekday] = Option(Monday)
   val l2WeekdayOptionNone: Option[Weekday] = None
   val l2WeekdaySeq: Seq[Weekday]
+  val l2Money: Money
+  val l2MoneyOption: Option[Money] = Option(Money("MYR", BigDecimal(3.4)))
+  val l2MoneySeq: Seq[Money] = Seq(
+    Money("USD", BigDecimal(5.6)),
+    Money("GBP", BigDecimal(7.8)),
+    Money("JPY", BigDecimal(100))
+  )
 }
 
 final case class A(
@@ -114,7 +121,8 @@ final case class C(
                     override val l2Seq: Seq[String],
                     override val l2Tuple: (String, Long, BigDecimal),
                     override val l2Weekday: Weekday,
-                    override val l2WeekdaySeq: Seq[Weekday]
+                    override val l2WeekdaySeq: Seq[Weekday],
+                    override val l2Money: Money
                   ) extends TLevelTwo
 
 object C {
