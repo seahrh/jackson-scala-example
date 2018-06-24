@@ -78,6 +78,9 @@ sealed trait TLevelTwo extends TLevelOne {
   // e.g.
   // val rootTupleWithOptions: (Option[String], Option[String]) = (Option("some"), None)
   val l2Weekday: Weekday
+  val l2WeekdayOption: Option[Weekday] = Option(Monday)
+  val l2WeekdayOptionNone: Option[Weekday] = None
+  val l2WeekdaySeq: Seq[Weekday]
 }
 
 final case class A(
@@ -110,7 +113,8 @@ final case class C(
                     override val l2Boolean: Boolean,
                     override val l2Seq: Seq[String],
                     override val l2Tuple: (String, Long, BigDecimal),
-                    l2Weekday: Weekday
+                    override val l2Weekday: Weekday,
+                    override val l2WeekdaySeq: Seq[Weekday]
                   ) extends TLevelTwo
 
 object C {
