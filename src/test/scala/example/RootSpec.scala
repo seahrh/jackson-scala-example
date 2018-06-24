@@ -11,65 +11,37 @@ class RootSpec extends FlatSpec with LazyLogging {
   private val minDoubleAsBigDecimal: BigDecimal = BigDecimal(Double.MinValue)
 
   "Class A" should "serialize to json" in {
-    // datetime string to millisecond precision
-    val dts: String = "2018-01-01T14:59:59.999"
     val a: A = A(
-      rootString = "root=a",
-      rootDateTime = LocalDateTime.parse(dts),
-      rootBigDecimal = BigDecimal(1.23456789),
-      rootBoolean = false,
-      rootSeq = Seq("one", "two", "three"),
-      rootTuple = ("hello", 1L, BigDecimal(1.2))
+      rootString = "root=a"
     )
     val actual: String = a.toJson
     logger.debug(s"actual=$actual")
     assertResult(
-      s"""{"type":"A","rootString":"root=a","rootDateTime":"$dts","rootBigDecimal":1.23456789,"rootBoolean":false,"rootSeq":["one","two","three"],"rootTuple":["hello",1,1.2],"rootLongMax":${Long.MaxValue},"rootLongMin":${Long.MinValue},"rootMaxDoubleAsBigDecimal":$maxDoubleAsBigDecimal,"rootMinDoubleAsBigDecimal":$minDoubleAsBigDecimal,"rootNull":null,"rootEmptyArray":[],"rootOptionSome":"some","rootOptionNone":null}"""
+      s"""{"type":"A","rootString":"root=a"}"""
     )(actual)
   }
 
   it should "deserialize json" in {
-    // datetime string to millisecond precision
-    val dts: String = "2018-01-01T14:59:59.999"
     val e: A = A(
-      rootString = "root=a",
-      rootDateTime = LocalDateTime.parse(dts),
-      rootBigDecimal = BigDecimal(1.23456789),
-      rootBoolean = false,
-      rootSeq = Seq("one", "two", "three"),
-      rootTuple = ("hello", 1L, BigDecimal(1.2))
+      rootString = "root=a"
     )
     val a: A = A.fromJson(e.toJson)
     assertResult(e)(a)
   }
 
   "Class B" should "serialize to json" in {
-    // datetime string to millisecond precision
-    val dts: String = "2018-01-01T14:59:59.999"
     val b: B = B(
       rootString = "root=b",
-      rootDateTime = LocalDateTime.parse(dts),
-      rootBigDecimal = BigDecimal(1.23456789),
-      rootBoolean = false,
-      rootSeq = Seq("one", "two", "three"),
-      rootTuple = ("hello", 1L, BigDecimal(1.2)),
       l1String = "l1=b"
     )
     assertResult(
-      s"""{"type":"B","rootString":"root=b","rootDateTime":"$dts","rootBigDecimal":1.23456789,"rootBoolean":false,"rootSeq":["one","two","three"],"rootTuple":["hello",1,1.2],"l1String":"l1=b","rootLongMax":${Long.MaxValue},"rootLongMin":${Long.MinValue},"rootMaxDoubleAsBigDecimal":$maxDoubleAsBigDecimal,"rootMinDoubleAsBigDecimal":$minDoubleAsBigDecimal,"rootNull":null,"rootEmptyArray":[],"rootOptionSome":"some","rootOptionNone":null}"""
+      s"""{"type":"B","rootString":"root=b","l1String":"l1=b"}"""
     )(b.toJson)
   }
 
   it should "deserialize json" in {
-    // datetime string to millisecond precision
-    val dts: String = "2018-01-01T14:59:59.999"
     val e: B = B(
       rootString = "root=b",
-      rootDateTime = LocalDateTime.parse(dts),
-      rootBigDecimal = BigDecimal(1.23456789),
-      rootBoolean = false,
-      rootSeq = Seq("one", "two", "three"),
-      rootTuple = ("hello", 1L, BigDecimal(1.2)),
       l1String = "l1=b"
     )
     val a: B = B.fromJson(e.toJson)
@@ -81,11 +53,11 @@ class RootSpec extends FlatSpec with LazyLogging {
     val dts: String = "2018-01-01T14:59:59.999"
     val c: C = C(
       rootString = "root=c",
-      rootDateTime = LocalDateTime.parse(dts),
-      rootBigDecimal = BigDecimal(1.23456789),
-      rootBoolean = false,
-      rootSeq = Seq("one", "two", "three"),
-      rootTuple = ("hello", 1L, BigDecimal(1.2)),
+      l2DateTime = LocalDateTime.parse(dts),
+      l2BigDecimal = BigDecimal(1.23456789),
+      l2Boolean = false,
+      l2Seq = Seq("one", "two", "three"),
+      l2Tuple = ("hello", 1L, BigDecimal(1.2)),
       l1String = "l1=c",
       l2String = "l2=c",
       l2Weekday = Sunday
@@ -93,7 +65,7 @@ class RootSpec extends FlatSpec with LazyLogging {
     val actual: String = c.toJson
     logger.debug(s"actual=$actual")
     assertResult(
-      s"""{"type":"C","rootString":"root=c","rootDateTime":"$dts","rootBigDecimal":1.23456789,"rootBoolean":false,"rootSeq":["one","two","three"],"rootTuple":["hello",1,1.2],"l1String":"l1=c","l2String":"l2=c","l2Weekday":"Sunday","rootLongMax":${Long.MaxValue},"rootLongMin":${Long.MinValue},"rootMaxDoubleAsBigDecimal":$maxDoubleAsBigDecimal,"rootMinDoubleAsBigDecimal":$minDoubleAsBigDecimal,"rootNull":null,"rootEmptyArray":[],"rootOptionSome":"some","rootOptionNone":null}"""
+      s"""{"type":"C","rootString":"root=c","l1String":"l1=c","l2String":"l2=c","l2DateTime":"$dts","l2BigDecimal":1.23456789,"l2Boolean":false,"l2Seq":["one","two","three"],"l2Tuple":["hello",1,1.2],"l2Weekday":"Sunday","l2LongMax":${Long.MaxValue},"l2LongMin":${Long.MinValue},"l2MaxDoubleAsBigDecimal":$maxDoubleAsBigDecimal,"l2MinDoubleAsBigDecimal":$minDoubleAsBigDecimal,"l2Null":null,"l2EmptyArray":[],"l2OptionSome":"some","l2OptionNone":null}"""
     )(actual)
   }
 
@@ -102,11 +74,11 @@ class RootSpec extends FlatSpec with LazyLogging {
     val dts: String = "2018-01-01T14:59:59.999"
     val e: C = C(
       rootString = "root=c",
-      rootDateTime = LocalDateTime.parse(dts),
-      rootBigDecimal = BigDecimal(1.23456789),
-      rootBoolean = false,
-      rootSeq = Seq("one", "two", "three"),
-      rootTuple = ("hello", 1L, BigDecimal(1.2)),
+      l2DateTime = LocalDateTime.parse(dts),
+      l2BigDecimal = BigDecimal(1.23456789),
+      l2Boolean = false,
+      l2Seq = Seq("one", "two", "three"),
+      l2Tuple = ("hello", 1L, BigDecimal(1.2)),
       l1String = "l1=c",
       l2String = "l2=c",
       l2Weekday = Sunday
