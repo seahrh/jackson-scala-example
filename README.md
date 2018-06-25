@@ -34,9 +34,9 @@ Jackson examples based on a scala trait hierarchy tree
    1. Configuration allows for other ways to handle `None` e.g. to omit the field in serialization
    1. If value is present, only the value is serialized (without the `Option` wrapper)
 1. Scala collections
-   1. Tuples and `Seq` are serialized as JSON array
-   1. Hence, an empty collection is serialized as an empty JSON array `[]`
+   1. Tuples and `Seq` are serialized as JSON array. Hence an empty tuple or `Seq` is serialized as an empty array `[]`
    1. Supports tuples of mixed types
+   1. `Map` is serialized as JSON object. Hence an empty `Map` is serialized as an empty object `{}`
 1. Java 8's time package `java.time.*` requires additional dependency to serde in ISO string format
    ```scala
    import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
@@ -56,3 +56,4 @@ Jackson examples based on a scala trait hierarchy tree
 ## References
 1. [Sealed case objects as enumerations in Scala](https://pedrorijo.com/blog/scala-enums/)
 1. [Custom deserialization in Jackson](http://www.baeldung.com/jackson-deserialization)
+1. [json.org](https://www.json.org/)

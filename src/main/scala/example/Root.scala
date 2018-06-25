@@ -88,6 +88,8 @@ sealed trait TLevelTwo extends TLevelOne {
     Money("GBP", BigDecimal(7.8)),
     Money("JPY", BigDecimal(100))
   )
+  val l2Map: Map[String, Int]
+  val l2EmptyMap: Map[String, Int] = Map()
 }
 
 final case class A(
@@ -122,7 +124,8 @@ final case class C(
                     override val l2Tuple: (String, Long, BigDecimal),
                     override val l2Weekday: Weekday,
                     override val l2WeekdaySeq: Seq[Weekday],
-                    override val l2Money: Money
+                    override val l2Money: Money,
+                    override val l2Map: Map[String, Int]
                   ) extends TLevelTwo
 
 object C {
