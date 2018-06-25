@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 import com.typesafe.scalalogging.LazyLogging
 import org.scalatest.FlatSpec
 
-class RootSpec extends FlatSpec with LazyLogging {
+class MyInheritanceTreeSpec extends FlatSpec with LazyLogging {
 
   private val maxDoubleAsBigDecimal: BigDecimal = BigDecimal(Double.MaxValue)
   private val minDoubleAsBigDecimal: BigDecimal = BigDecimal(Double.MinValue)

@@ -8,14 +8,14 @@ Jackson examples based on a scala trait hierarchy tree
 1. Root and intermediate nodes are traits
 1. Leaf nodes are case classes
 1. Root starts at level zero of the tree. The examples use a tree that is four levels deep
-   1. see [Root](src/main/scala/example/Root.scala)
+   1. see [`MyInheritanceTree`](src/main/scala/example/MyInheritanceTree.scala)
 
-[Tested](src/test/scala/example/RootSpec.scala) on Jackson Scala module **v2.9.5**.
+[Tested](src/test/scala/example/MyInheritanceTreeSpec.scala) on Jackson Scala module **v2.9.5**.
 
 ## Notes
 1. Works out of the box with Scala types like `String`, `Boolean`, `Long`, `BigDecimal`
 1. Case classes are supported
-   1. see [Money](src/main/scala/example/Money.scala)
+   1. see [`Money`](src/main/scala/example/Money.scala)
 1. Subtypes are supported, with additional configuration e.g.
    ```
    @JsonTypeInfo(use = Id.NAME,
@@ -28,7 +28,7 @@ Jackson examples based on a scala trait hierarchy tree
    ))
    ```
 1. Write custom serializer/deserializer for sealed case objects, which is a way to define enumerations in Scala
-   1. see [Weekday](src/main/scala/example/Weekday.scala)
+   1. see [`Weekday`](src/main/scala/example/Weekday.scala)
 1. Scala `Option`
    1. `None` is serialized as JSON null
    1. Configuration allows for other ways to handle `None` e.g. to omit the field in serialization
