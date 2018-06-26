@@ -4,7 +4,9 @@ Serde = Serialization/Deserialization
 Goals
 1. Evaluate [Jackson Scala module]'s capability to serde case classes and collections in Scala
 
-![tree]
+![tree_embed]
+
+[google drawing]
 
 Jackson examples based on a scala trait hierarchy tree
 1. Root and intermediate nodes are traits
@@ -60,5 +62,6 @@ Jackson examples based on a scala trait hierarchy tree
 1. [Custom deserialization in Jackson](http://www.baeldung.com/jackson-deserialization)
 1. [json.org](https://www.json.org/)
 
-[tree]: https://docs.google.com/drawings/d/e/2PACX-1vTvNyjvoMiB_8AxFhf3tEoRFdtGggVt2Zq-onYAhr7zuLfSZRlrZZfcUOLzs4Q8N485ethI7WqyFbZD/pub?w=400&h=211
+[tree_embed]: https://docs.google.com/drawings/d/e/2PACX-1vTvNyjvoMiB_8AxFhf3tEoRFdtGggVt2Zq-onYAhr7zuLfSZRlrZZfcUOLzs4Q8N485ethI7WqyFbZD/pub?w=400&h=211
+[google drawing]: https://docs.google.com/drawings/d/188EgRrJtFWO2H-wWzbaWclc99T3f5og-5n6GvzInlis/edit?usp=sharing
 [Jackson Scala module]: https://github.com/FasterXML/jackson-module-scala
